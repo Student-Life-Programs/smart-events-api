@@ -127,8 +127,8 @@ app.post('/api/tracker', function(req, res, next)
     res.writeHead(200, {'Content-Type': 'text/xml'});
     res.end(twiml.toString());
     // send follow up text with a message and/or image
-    previousCheckin(req.body.From, eventID)
-      .then(function() {
+    // previousCheckin(req.body.From, eventID)
+    //  .then(function() {
       // check for event based on current time
       // let now = new Date();
       if (true) {
@@ -146,11 +146,11 @@ app.post('/api/tracker', function(req, res, next)
         twilio.createMessage(req.body.From, message, null, function(response) {});
       }
         // let image = "http://drive.google.com/uc?export=view&id=1SbSyvfwOn24rIwSmFuObCf0fmQAxo7F5";
-      })
-      .catch(function(err) {
-        console.log(err);
-        twilio.createMessage(req.body.From, 'Sorry! There has been an error or you have already checked-in.', null, function(response) {});
-      });
+      // })
+      // .catch(function(err) {
+      //   console.log(err);
+      //   twilio.createMessage(req.body.From, 'Sorry! There has been an error or you have already checked-in.', null, function(response) {});
+      // });
   } else {
     twiml.message('Sorry! Invalid student ID, please confirm it is 7 digits and try again.');
     res.writeHead(200, {'Content-Type': 'text/xml'});

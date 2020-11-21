@@ -117,46 +117,45 @@ app.post('/api/tracker', function(req, res, next)
   const message = twiml.message();
   let parsed = req.body.Body.replace(/\D/g,'');
 
-  // if (parsed.length == 7) {
+  if (parsed.length == 7) {
     // send successful check-in response
-    // let returnMessage = `👋 Hey! Checking you in...\n(ID: ${req.body.Body})`;
-    let returnMessage = "Thank you for your interest in Campus Christmas on Saturday 11/21. Here is the schedule for the event, and make your reservations at cedar.to/queues";
+    let returnMessage = `👋 Hey! Checking you in...\n(ID: ${req.body.Body})`;
+    // let returnMessage = "Thank you for your interest in Campus Christmas on Saturday 11/21. Here is the schedule for the event, and make your reservations at cedar.to/queues";
     message.body(returnMessage);
-    message.media("http://drive.google.com/uc?export=view&id=1SbSyvfwOn24rIwSmFuObCf0fmQAxo7F5");
+    // message.media("http://drive.google.com/uc?export=view&id=1SbSyvfwOn24rIwSmFuObCf0fmQAxo7F5");
     // twiml.message(returnMessage);
     res.writeHead(200, {'Content-Type': 'text/xml'});
     res.end(twiml.toString());
     // send follow up text with a message and/or image
-    // previousCheckin(req.body.From, eventID)
-    //   .then(function() {
-        
-    // check for event based on current time
-  //   let now = new Date();
-  //   if (true) {
-  //     let message = "Thank you for your interest in Campus Christmas on Friday 11/20. Here is the schedule for the event, and make your reservations at cedar.to/queues";
-  //     //message += "Today, we have the opportunity to meet and learn more about SGA roles and responsibilities. If you have any questions, please go to https://sli.do & enter the code 1887. Thank you for being here!\n\n";
-  //     //message += "With love,\nCampus Community Committee";
-  //     let image = null;
-  //     twilio.createMessage(req.body.From, message, image, function(response) {});
-      createAttendance(parsed, "5f74d2ea90fc44b114573c4b", req.body.From);
-  //   } else {
-  //     // twiml.message('Sorry! No live events at the moment. Please try again later!');
-  //     // res.writeHead(200, {'Content-Type': 'text/xml'});
-  //     // return res.end(twiml.toString()); 
-  //     let message = 'Sorry! No live events at the moment. Please try again later!';
-  //      twilio.createMessage(req.body.From, message, null, function(response) {});
-  //   }
-  //       // let image = "http://drive.google.com/uc?export=view&id=1SbSyvfwOn24rIwSmFuObCf0fmQAxo7F5";
-  //     // })
-  //     // .catch(function(err) {
-  //     //   console.log(err);
-  //     //   twilio.createMessage(req.body.From, 'Sorry! There has been an error or you have already checked-in.', null, function(response) {});
-  //     // });
-  // } else {
-  //   twiml.message('Sorry! Invalid student ID, please confirm it is 7 digits and try again.');
-  //   res.writeHead(200, {'Content-Type': 'text/xml'});
-  //   res.end(twiml.toString()); 
-  // }
+    previousCheckin(req.body.From, eventID)
+      .then(function() {
+      // check for event based on current time
+      // let now = new Date();
+      if (true) {
+        let message = "Welcome to Campus Christmas! Enjoy the event. If you haven't already, make your reservations here: cedar.to/queues";
+        //message += "Today, we have the opportunity to meet and learn more about SGA roles and responsibilities. If you have any questions, please go to https://sli.do & enter the code 1887. Thank you for being here!\n\n";
+        //message += "With love,\nCampus Community Committee";
+        let image = null;
+        twilio.createMessage(req.body.From, message, image, function(response) {});
+        createAttendance(parsed, "5f74d2ea90fc44b114573c4b", req.body.From);
+      } else {
+        // twiml.message('Sorry! No live events at the moment. Please try again later!');
+        // res.writeHead(200, {'Content-Type': 'text/xml'});
+        // return res.end(twiml.toString()); 
+        let message = 'Sorry! No live events at the moment. Please try again later!';
+        twilio.createMessage(req.body.From, message, null, function(response) {});
+      }
+        // let image = "http://drive.google.com/uc?export=view&id=1SbSyvfwOn24rIwSmFuObCf0fmQAxo7F5";
+      })
+      .catch(function(err) {
+        console.log(err);
+        twilio.createMessage(req.body.From, 'Sorry! There has been an error or you have already checked-in.', null, function(response) {});
+      });
+  } else {
+    twiml.message('Sorry! Invalid student ID, please confirm it is 7 digits and try again.');
+    res.writeHead(200, {'Content-Type': 'text/xml'});
+    res.end(twiml.toString()); 
+  }
 });
 // app.post('/api/tracker', function(req, res, next)
 // {

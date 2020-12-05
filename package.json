@@ -17,6 +17,7 @@
     "fs": "0.0.1-security",
     "google-spreadsheet": "^3.0.13",
     "mongodb": "^3.5.9",
+    "mongoose": "^5.11.3",
     "pm2": "^4.4.0",
     "qrcode": "^1.4.4",
     "twilio": "^3.48.1"

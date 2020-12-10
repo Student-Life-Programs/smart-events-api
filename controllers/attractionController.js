@@ -117,8 +117,7 @@ exports.delete = function (req, res) {
       });
     } else {
       res.json({
-        status: "success",
-        data: data
+        status: "success"
       });
     }
   });

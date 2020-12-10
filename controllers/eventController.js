@@ -9,7 +9,8 @@
 
 const Event = require('../models/Event');
 const Attraction = require('../models/Attraction');
-const Attendee = require('../models/Attendee');
+const Engagee = require('../models/Engagee');
+const Engagement = require('../models/Engagement')
 
 // index - get all events
 exports.index = function (req, res) {
@@ -31,10 +32,10 @@ exports.index = function (req, res) {
 // add - create a single event
 exports.add = function (req, res) {
   var event = new Event();
-  event.name            = req.body.name;
-  event.description     = req.body.description;
-  event.start_time      = req.body.start_time ? req.body.start_time : event.start_time;
-  event.checkin_message = req.body.checkin_message ? req.body.checkin_message : event.checkin_message;
+  event.name        = req.body.name;
+  event.description = req.body.description;
+  event.start_time  = req.body.start_time;
+  event.end_time    = req.body.end_time;
   // save and check
   event.save(function (err) {
     if (err) {
@@ -83,10 +84,10 @@ exports.update = function (req, res) {
       });
     } else {
       // update if attribute was sent
-      event.name            = req.body.name ? req.body.name : event.name;
-      event.description     = req.body.description ? req.body.description : event.description;
-      event.start_time      = req.body.start_time ? req.body.start_time : event.start_time;
-      event.checkin_message = req.body.checkin_message ? req.body.checkin_message : event.checkin_message;
+      event.name        = req.body.name ? req.body.name : event.name;
+      event.description = req.body.description ? req.body.description : event.description;
+      event.start_time  = req.body.start_time ? req.body.start_time : event.start_time;
+      event.end_time    = req.body.end_time ? req.body.end_time : event.end_time;
       // save and check
       event.save(function (err) {
         if (err) {
@@ -105,12 +106,17 @@ exports.update = function (req, res) {
   });
 };
 
-// delete - deletes a single event and all its attractions and attendees
+// delete - deletes a single event and all its attractions, engagements, and engagees
 exports.delete = function (req, res) {
   // delete the event
   Event.deleteOne({ _id: req.params.id})
     .then((data) => Attraction.deleteMany({ event_id: req.params.id }))
-    .then((data) => Attendee.deleteMany({ event_id: req.params.id }))
+    .then((data) => Engagement.find({ event_id: req.params.id }))
+    .then((data) => 
+      // delete all engagees for each engagement by id
+      Engagee.deleteMany({ engagement_id: { $in: data.map(obj => obj._id) }})
+    )
+    .then((data) => Engagement.deleteMany({ event_id: req.params.id }))
     .then((data) => {
       res.json({
         status: "success"

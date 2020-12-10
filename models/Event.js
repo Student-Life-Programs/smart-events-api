@@ -20,11 +20,11 @@ const EventSchema = mongoose.Schema({
   },
   start_time: {
     type: Date,
-    default: null
+    required: true
   },
-  checkin_message: {
-    type: String,
-    default: null
+  end_time: {
+    type: Date,
+    required: true
   }
 });
 

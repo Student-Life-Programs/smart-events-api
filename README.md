@@ -24,9 +24,9 @@ Owned by SLP
 `/api/attractions/{id}`
 - GET, PUT, DELETE
 
-### Attendee
-`/api/attendees`
+### Engagee
+`/api/engagees`
 - GET, POST
 
-`/api/attendees/{id}`
+`/api/engagees/{id}`
 - GET, PUT, DELETE

@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 // connect to mongoDB
 const mongoose = require('mongoose');
-const dbPath = 'mongodb://localhost/virtual-queues';
+const dbPath = 'mongodb://localhost/smart-events-db';
 const options = {useNewUrlParser: true, useUnifiedTopology: true};
 const mongo = mongoose.connect(dbPath, options);
 mongo

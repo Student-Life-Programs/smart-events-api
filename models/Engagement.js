@@ -26,10 +26,6 @@ const EngagementSchema = mongoose.Schema({
   image_url: {
     type: String
   },
-  is_checkin: {
-    type: Boolean,
-    required: true
-  },
   start_time: {
     type: Date,
     required: true

@@ -34,9 +34,8 @@ exports.add = function (req, res) {
   engagement.keyword    = req.body.keyword;
   engagement.message    = req.body.message;
   engagement.image_url  = req.body.image_url ? req.body.image_url : engagement.image_url;
-  engagement.is_checkin = req.body.is_checkin;
-  engagement.start_time = req.body.start_time;
-  engagement.end_time   = req.body.end_time;
+  engagement.start_time = new Date(req.body.start_time);
+  engagement.end_time   = new Date(req.body.end_time);
   // save and check
   engagement.save(function (err) {
     if (err) {
@@ -89,9 +88,8 @@ exports.update = function (req, res) {
       engagement.keyword    = req.body.keyword ? req.body.keyword : engagement.keyword;
       engagement.message    = req.body.message ? req.body.message : engagement.message;
       engagement.image_url  = req.body.image_url ? req.body.image_url : engagement.image_url;
-      engagement.is_checkin = req.body.is_checkin ? req.body.is_checkin : engagement.is_checkin;
-      engagement.start_time = req.body.start_time ? req.body.start_time : engagement.start_time;
-      engagement.end_time   = req.body.end_time ? req.body.end_time : engagement.end_time;
+      engagement.start_time = req.body.start_time ? new Date(req.body.start_time) : engagement.start_time;
+      engagement.end_time   = req.body.end_time ? new Date(req.body.end_time) : engagement.end_time;
       // save and check
       engagement.save(function (err) {
         if (err) {

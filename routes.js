@@ -31,9 +31,7 @@ router.route('/events')
 router.route('/events/:id')
   .get(eventController.view)
   .put(eventController.update)
-  // .delete(eventController.delete);
-router.route('/events/:id/attractions')
-  .get(attractionController.viewByEvent)
+  .delete(eventController.delete);
 
 // ATTRACTIONS
 router.route('/attractions')

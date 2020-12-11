@@ -34,6 +34,8 @@ exports.add = function (req, res) {
   attraction.description  = req.body.description;
   attraction.about        = req.body.about;
   attraction.image_url    = req.body.image_url;
+  attraction.start_time   = req.body.start_time;
+  attraction.end_time     = req.body.end_time;
   // save and check
   attraction.save(function (err) {
     if (err) {
@@ -87,6 +89,8 @@ exports.update = function (req, res) {
       attraction.description = req.body.description ? req.body.description : attraction.description;
       attraction.about       = req.body.about ? req.body.about : attraction.about;
       attraction.image_url   = req.body.image_url ? req.body.image_url : attraction.image_url;
+      attraction.start_time  = req.body.start_time ? req.body.start_time : attraction.start_time;
+      attraction.end_time    = req.body.end_time ? req.body.end_time : attraction.end_time;
       // save and check
       attraction.save(function (err) {
         if (err) {
@@ -122,39 +126,3 @@ exports.delete = function (req, res) {
     }
   });
 };
-
-// viewByEvent - get all attractions by event
-exports.viewByEvent = function (req, res) {
-  Attraction.find({event_id: req.params.id}, function(err, data) {
-    if (err) {
-      res.json({
-        status: "error",
-        message: err
-      });
-    } else {
-      res.json({
-        status: "success",
-        data: data
-      });
-    }
-  });
-};
-
-// deleteByEvent - delete all attractions by event
-// exports.deleteByEvent = function (req, res) {
-//   Attraction.deleteMany({
-//     event_id: req.params.id
-//   }, function (err, data) {
-//     if (err) {
-//       res.json({
-//         status: "error",
-//         message: err
-//       });
-//     } else {
-//       res.json({
-//         status: "success",
-//         data: data
-//       });
-//     }
-//   });
-// }

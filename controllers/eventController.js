@@ -34,8 +34,6 @@ exports.add = function (req, res) {
   var event = new Event();
   event.name        = req.body.name;
   event.description = req.body.description;
-  event.start_time  = req.body.start_time;
-  event.end_time    = req.body.end_time;
   // save and check
   event.save(function (err) {
     if (err) {
@@ -86,8 +84,6 @@ exports.update = function (req, res) {
       // update if attribute was sent
       event.name        = req.body.name ? req.body.name : event.name;
       event.description = req.body.description ? req.body.description : event.description;
-      event.start_time  = req.body.start_time ? req.body.start_time : event.start_time;
-      event.end_time    = req.body.end_time ? req.body.end_time : event.end_time;
       // save and check
       event.save(function (err) {
         if (err) {

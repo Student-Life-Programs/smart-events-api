@@ -30,6 +30,14 @@ const AttractionSchema = mongoose.Schema({
   image_url: {
     type: String,
     required: true
+  },
+  start_time: {
+    type: Date,
+    required: true
+  },
+  end_time: {
+    type: Date,
+    required: true
   }
 });
 

@@ -57,7 +57,6 @@ router.route('/engagements/:id/engagees')
 router.route('/engagees')
   .get(engageeController.index)
   .post(engageeController.add)
-  .delete(engageeController.deleteAll);
 router.route('/engagees/:id')
   .get(engageeController.view)
   .put(engageeController.update)

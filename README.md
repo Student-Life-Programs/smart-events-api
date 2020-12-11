@@ -14,17 +14,24 @@ Owned by SLP
 `/api/events/{id}`
 - GET, PUT, DELETE
 
-`/api/events/{id}/attractions`
-- GET
-
-### Attraction
+### Attractions
 `/api/attractions`
 - GET, POST
 
 `/api/attractions/{id}`
 - GET, PUT, DELETE
 
-### Engagee
+### Engagements
+`/api/engagements`
+- GET, POST
+
+`/api/engagements/{id}`
+- GET, PUT, DELETE
+
+`/api/engagements/{id}/engagees`
+- GET
+
+### Engagees
 `/api/engagees`
 - GET, POST
 

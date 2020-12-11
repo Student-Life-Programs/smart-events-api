@@ -120,23 +120,6 @@ exports.delete = function (req, res) {
   });
 };
 
-// deleteAll - delete all engagees
-exports.deleteAll = function (req, res) {
-  Engagee.deleteMany({}, function(err, data) {
-    if (err) {
-      res.json({
-        status: "error",
-        message: err
-      });
-    } else {
-      res.json({
-        status: "success",
-        data: data
-      });
-    }
-  });
-};
-
 // viewByEngagement - get all engagees by engagement
 exports.viewByEngagement = function (req, res) {
   Engagee.find({engagement_id: req.params.id}, function(err, data) {

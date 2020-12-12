@@ -6,6 +6,13 @@ Owned by SLP
 * `touch .env`
 * Add secrets to .env
 
+## Nginx
+This API uses Nginx, a reverse proxy server which sends requests from the server root to express
+* Edit the config file: `sudo vi /etc/nginx/nginx.conf`
+* Check the syntax: `sudo nginx -t`
+* Restart the nginx reverse proxy: `sudo systemctl restart nginx`
+* Check status: `sudo systemctl status nginx`
+
 ## API Routes
 ### Events
 `/api/events`

@@ -14,8 +14,10 @@ const port = 3000;
 // use body parser for routes
 const routes = require("./routes");
 const bodyParser = require('body-parser');
+const compression = require('compression');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(compression()); // use compression on routes
 
 // connect to mongoDB
 const mongoose = require('mongoose');

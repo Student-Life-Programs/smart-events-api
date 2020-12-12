@@ -29,13 +29,13 @@ exports.index = function (req, res) {
 // add - create a single attraction
 exports.add = function (req, res) {
   var attraction = new Attraction();
-  attraction.event_id     = req.body.event_id;
-  attraction.name         = req.body.name;
-  attraction.description  = req.body.description;
-  attraction.about        = req.body.about;
-  attraction.image_url    = req.body.image_url;
-  attraction.start_time   = req.body.start_time;
-  attraction.end_time     = req.body.end_time;
+  attraction.event_id    = req.body.event_id;
+  attraction.name        = req.body.name;
+  attraction.description = req.body.description;
+  attraction.about       = req.body.about;
+  attraction.image_url   = req.body.image_url;
+  attraction.start_time  = new Date(req.body.start_time);
+  attraction.end_time    = new Date(req.body.end_time);
   // save and check
   attraction.save(function (err) {
     if (err) {
@@ -89,8 +89,8 @@ exports.update = function (req, res) {
       attraction.description = req.body.description ? req.body.description : attraction.description;
       attraction.about       = req.body.about ? req.body.about : attraction.about;
       attraction.image_url   = req.body.image_url ? req.body.image_url : attraction.image_url;
-      attraction.start_time  = req.body.start_time ? req.body.start_time : attraction.start_time;
-      attraction.end_time    = req.body.end_time ? req.body.end_time : attraction.end_time;
+      attraction.start_time  = req.body.start_time ? new Date(req.body.start_time) : attraction.start_time;
+      attraction.end_time    = req.body.end_time ? new Date(req.body.end_time) : attraction.end_time;
       // save and check
       attraction.save(function (err) {
         if (err) {

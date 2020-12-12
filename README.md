@@ -1,4 +1,4 @@
-# smart-events-backend
+# smart-events-api
 Owned by SLP
 
 ## Install locally

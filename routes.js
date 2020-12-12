@@ -23,6 +23,8 @@ const eventController = require('./controllers/eventController');
 const attractionController = require('./controllers/attractionController');
 const engagementController = require('./controllers/engagementController');
 const engageeController = require('./controllers/engageeController');
+const slotController = require('./controllers/slotController');
+const ticketController = require('./controllers/ticketController');
 
 // EVENTS
 router.route('/events')
@@ -32,15 +34,6 @@ router.route('/events/:id')
   .get(eventController.view)
   .put(eventController.update)
   .delete(eventController.delete);
-
-// ATTRACTIONS
-router.route('/attractions')
-  .get(attractionController.index)
-  .post(attractionController.add);
-router.route('/attractions/:id')
-  .get(attractionController.view)
-  .put(attractionController.update)
-  .delete(attractionController.delete);
 
 // ENGAGEMENTS
 router.route('/engagements')
@@ -61,5 +54,32 @@ router.route('/engagees/:id')
   .get(engageeController.view)
   .put(engageeController.update)
   .delete(engageeController.delete);
+
+// ATTRACTIONS
+router.route('/attractions')
+  .get(attractionController.index)
+  .post(attractionController.add);
+router.route('/attractions/:id')
+  .get(attractionController.view)
+  .put(attractionController.update)
+  .delete(attractionController.delete);
+
+// SLOTS
+router.route('/slots')
+  .get(slotController.index)
+  .post(slotController.add);
+router.route('/slots/:id')
+  .get(slotController.view)
+  .put(slotController.update)
+  .delete(slotController.delete);
+
+// TICKETS
+router.route('/tickets')
+  .get(ticketController.index)
+  .post(ticketController.add);
+router.route('/tickets/:id')
+  .get(ticketController.view)
+  .put(ticketController.update)
+  .delete(ticketController.delete);
 
 module.exports = router;

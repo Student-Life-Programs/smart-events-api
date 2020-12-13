@@ -1,11 +1,11 @@
 {
   "name": "smart-events-api",
   "version": "2.0.0",
-  "description": "",
+  "description": "CRUD API for the SmartEvents system, owned by SLP.",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha 'tests/test.js'"
   },
   "author": "Jake Allinson",
   "license": "MIT",
@@ -16,9 +16,12 @@
     "express": "^4.17.1",
     "fs": "0.0.1-security",
     "google-spreadsheet": "^3.0.13",
+    "mocha": "^8.2.1",
     "mongodb": "^3.5.9",
     "mongoose": "^5.11.3",
     "pm2": "^4.4.0",
+    "should": "^13.2.3",
+    "supertest": "^6.0.1",
     "twilio": "^3.48.1"
   }
 }

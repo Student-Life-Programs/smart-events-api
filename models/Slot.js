@@ -19,7 +19,7 @@ const SlotSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  tickets_capacity: {
+  ticket_capacity: {
     type: Number,
     required: true
   },

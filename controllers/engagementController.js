@@ -36,20 +36,28 @@ exports.add = function (req, res) {
   engagement.image_url  = req.body.image_url ? req.body.image_url : engagement.image_url;
   engagement.start_time = new Date(req.body.start_time);
   engagement.end_time   = new Date(req.body.end_time);
-  // save and check
-  engagement.save(function (err) {
-    if (err) {
-      res.json({
-        status: "error",
-        message: err
-      });
-    } else {
-      res.json({
-        status: "success",
-        data: engagement
-      });
-    }
-  });
+  // check for appropriate start/end times
+  if (engagement.start_time >= engagement.end_time) {
+    res.json({
+      status: "error",
+      message: "Engagement start_time must be before end_time."
+    });
+  } else {
+    // save and check
+    engagement.save(function (err) {
+      if (err) {
+        res.json({
+          status: "error",
+          message: err
+        });
+      } else {
+        res.json({
+          status: "success",
+          data: engagement
+        });
+      }
+    });
+  }
 };
 
 // view - find a single engagement
@@ -90,20 +98,28 @@ exports.update = function (req, res) {
       engagement.image_url  = req.body.image_url ? req.body.image_url : engagement.image_url;
       engagement.start_time = req.body.start_time ? new Date(req.body.start_time) : engagement.start_time;
       engagement.end_time   = req.body.end_time ? new Date(req.body.end_time) : engagement.end_time;
-      // save and check
-      engagement.save(function (err) {
-        if (err) {
-          res.json({
-            status: "error",
-            message: err
-          });
-        } else {
-          res.json({
-            status: "success",
-            data: engagement
-          });
-        }
-      });
+      // check for appropriate start/end times
+      if (engagement.start_time >= engagement.end_time) {
+        res.json({
+          status: "error",
+          message: "Engagement start_time must be before end_time."
+        });
+      } else {
+        // save and check
+        engagement.save(function (err) {
+          if (err) {
+            res.json({
+              status: "error",
+              message: err
+            });
+          } else {
+            res.json({
+              status: "success",
+              data: engagement
+            });
+          }
+        });
+      }
     }
   });
 };

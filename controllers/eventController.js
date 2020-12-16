@@ -14,7 +14,7 @@ const Engagement = require('../models/Engagement')
 
 // index - get all events
 exports.index = function (req, res) {
-  Event.get(function (err, data) {
+  Event.find({}, function (err, data) {
     if (err) {
       res.json({
         status: "error",

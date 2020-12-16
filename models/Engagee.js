@@ -9,7 +9,7 @@
 
 const mongoose = require('mongoose');
 
-const EngageeSchema = mongoose.Schema({
+const schema = mongoose.Schema({
   engagement_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Engagement',
@@ -25,9 +25,4 @@ const EngageeSchema = mongoose.Schema({
   }
 });
 
-// export the model
-const Engagee = module.exports = mongoose.model('Engagee', EngageeSchema);
-
-module.exports.get = function (callback, limit) {
-  Engagee.find(callback).limit(limit); 
-}
+module.exports = mongoose.model('Engagee', schema);

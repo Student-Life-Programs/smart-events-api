@@ -19,12 +19,12 @@ router.get('/', function(req, res) {
 });
 
 // controllers
-const eventController = require('./controllers/eventController');
-const attractionController = require('./controllers/attractionController');
-const engagementController = require('./controllers/engagementController');
-const engageeController = require('./controllers/engageeController');
-const slotController = require('./controllers/slotController');
-const ticketController = require('./controllers/ticketController');
+const eventController = require('../controllers/eventController');
+const attractionController = require('../controllers/attractionController');
+const engagementController = require('../controllers/engagementController');
+const engageeController = require('../controllers/engageeController');
+const slotController = require('../controllers/slotController');
+const ticketController = require('../controllers/ticketController');
 
 // EVENTS
 router.route('/events')

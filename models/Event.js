@@ -9,7 +9,7 @@
 
 const mongoose = require('mongoose');
 
-const EventSchema = mongoose.Schema({
+const schema = mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -20,9 +20,4 @@ const EventSchema = mongoose.Schema({
   }
 });
 
-// export the model
-const Event = module.exports = mongoose.model('Event', EventSchema);
-
-module.exports.get = function (callback, limit) {
-  Event.find(callback).limit(limit); 
-}
+module.exports = mongoose.model('Event', schema);

@@ -9,7 +9,7 @@
 
 const mongoose = require('mongoose');
 
-const EngagementSchema = mongoose.Schema({
+const schema = mongoose.Schema({
   event_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Event',
@@ -36,9 +36,4 @@ const EngagementSchema = mongoose.Schema({
   }
 });
 
-// export the model
-const Engagement = module.exports = mongoose.model('Engagement', EngagementSchema);
-
-module.exports.get = function (callback, limit) {
-  Engagement.find(callback).limit(limit); 
-}
+module.exports = mongoose.model('Engagement', schema);

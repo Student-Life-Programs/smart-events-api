@@ -1,5 +1,10 @@
+// 
+// SmartEvents
+// Student Life Programs
+// Cedarville University
 //
-// Creating the twiML responses
+// purpose: CURRENTLY NOT BEING USED
+// author(s): Jake Allinson
 //
 
 const MessagingResponse = require('twilio').twiml.MessagingResponse;

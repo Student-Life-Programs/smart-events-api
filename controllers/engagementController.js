@@ -12,7 +12,7 @@ const Engagee = require('../models/Engagee');
 
 // index - get all engagements
 exports.index = function (req, res) {
-  Engagement.get(function (err, data) {
+  Engagement.find({}, function (err, data) {
     if (err) {
       res.json({
         status: "error",

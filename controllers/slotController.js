@@ -11,7 +11,7 @@ const Slot = require('../models/Slot');
 
 // index - get all slots
 exports.index = function (req, res) {
-  Slot.get(function (err, data) {
+  Slot.find({}, function (err, data) {
     if (err) {
       res.json({
         status: "error",

@@ -11,7 +11,7 @@ const Ticket = require('../models/Ticket');
 
 // index - get all tickets
 exports.index = function (req, res) {
-  Ticket.get(function (err, data) {
+  Ticket.find({}, function (err, data) {
     if (err) {
       res.json({
         status: "error",

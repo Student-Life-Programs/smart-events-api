@@ -11,7 +11,7 @@ const Attraction = require('../models/Attraction');
 
 // index - get all attractions
 exports.index = function (req, res) {
-  Attraction.get(function (err, data) {
+  Attraction.find({}, function (err, data) {
     if (err) {
       res.json({
         status: "error",

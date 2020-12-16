@@ -9,7 +9,7 @@
 
 const mongoose = require('mongoose');
 
-const SlotSchema = mongoose.Schema({
+const schema = mongoose.Schema({
   attraction_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Attraction',
@@ -29,9 +29,4 @@ const SlotSchema = mongoose.Schema({
   }
 });
 
-// export the model
-const Slot = module.exports = mongoose.model('Slot', SlotSchema);
-
-module.exports.get = function (callback, limit) {
-  Slot.find(callback).limit(limit); 
-}
+module.exports = mongoose.model('Slot', schema);

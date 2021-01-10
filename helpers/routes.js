@@ -72,6 +72,8 @@ router.route('/slots/:id')
   .get(slotController.view)
   .put(slotController.update)
   .delete(slotController.delete);
+router.route('/slots/:id/tickets')
+  .get(ticketController.viewBySlot);
 
 // TICKETS
 router.route('/tickets')

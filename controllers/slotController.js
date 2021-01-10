@@ -8,6 +8,7 @@
 //
 
 const Slot = require('../models/Slot');
+const Ticket = require('../models/Ticket');
 
 // index - get all slots
 exports.index = function (req, res) {
@@ -120,3 +121,19 @@ exports.delete = function (req, res) {
     }
   });
 };
+
+exports.viewBySlot = function (req, res) {
+  Ticket.find({slot_id: req.params.id}, function(err, data) {
+    if (err) {
+      res.json({
+        status: "error",
+        message: err
+      });
+    } else {
+      res.json({
+        status: "success",
+        data: data
+      });
+    }
+  });
+}

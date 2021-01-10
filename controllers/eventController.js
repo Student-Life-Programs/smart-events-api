@@ -102,25 +102,20 @@ exports.update = function (req, res) {
   });
 };
 
-// delete - deletes a single event and all its attractions, engagements, and engagees
+// delete - deletes a single event
 exports.delete = function (req, res) {
-  // delete the event
-  Event.deleteOne({ _id: req.params.id})
-    .then((data) => Attraction.deleteMany({ event_id: req.params.id }))
-    .then((data) => Engagement.find({ event_id: req.params.id }))
-    .then((data) => 
-      // delete all engagees for each engagement by id
-      Engagee.deleteMany({ engagement_id: { $in: data.map(obj => obj._id) }})
-    )
-    .then((data) => Engagement.deleteMany({ event_id: req.params.id }))
-    .then((data) => {
-      res.json({
-        status: "success"
-      })})
-    .catch((err) => {
+  Event.deleteOne({
+    _id: req.params.id
+  }, function (err, data) {
+    if (err) {
       res.json({
         status: "error",
         message: err
       });
-    })
+    } else {
+      res.json({
+        status: "success"
+      });
+    }
+  });
 };

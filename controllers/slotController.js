@@ -121,19 +121,3 @@ exports.delete = function (req, res) {
     }
   });
 };
-
-exports.viewBySlot = function (req, res) {
-  Ticket.find({slot_id: req.params.id}, function(err, data) {
-    if (err) {
-      res.json({
-        status: "error",
-        message: err
-      });
-    } else {
-      res.json({
-        status: "success",
-        data: data
-      });
-    }
-  });
-}

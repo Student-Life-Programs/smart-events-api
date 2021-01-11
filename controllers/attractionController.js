@@ -92,13 +92,13 @@ exports.update = function (req, res) {
       });
     } else {
       // update if attribute was sent
-      attraction.event_id    = req.body.event_id ? req.body.event_id : attraction.event_id;
-      attraction.name        = req.body.name ? req.body.name : attraction.name;
-      attraction.description = req.body.description ? req.body.description : attraction.description;
-      attraction.about       = req.body.about ? req.body.about : attraction.about;
-      attraction.image_url   = req.body.image_url ? req.body.image_url : attraction.image_url;
-      attraction.start_time  = req.body.start_time ? new Date(req.body.start_time) : attraction.start_time;
-      attraction.end_time    = req.body.end_time ? new Date(req.body.end_time) : attraction.end_time;
+      attraction.event_id    = req.body.event_id !== undefined ? req.body.event_id : attraction.event_id;
+      attraction.name        = req.body.name !== undefined ? req.body.name : attraction.name;
+      attraction.description = req.body.description !== undefined ? req.body.description : attraction.description;
+      attraction.about       = req.body.about !== undefined ? req.body.about : attraction.about;
+      attraction.image_url   = req.body.image_url !== undefined ? req.body.image_url : attraction.image_url;
+      attraction.start_time  = req.body.start_time !== undefined ? new Date(req.body.start_time) : attraction.start_time;
+      attraction.end_time    = req.body.end_time !== undefined ? new Date(req.body.end_time) : attraction.end_time;
       // check for appropriate start/end times
       if (attraction.start_time >= attraction.end_time) {
         res.json({

@@ -82,8 +82,8 @@ exports.update = function (req, res) {
       });
     } else {
       // update if attribute was sent
-      event.name        = req.body.name ? req.body.name : event.name;
-      event.description = req.body.description ? req.body.description : event.description;
+      event.name        = req.body.name !== undefined ? req.body.name : event.name;
+      event.description = req.body.description !== undefined ? req.body.description : event.description;
       // save and check
       event.save(function (err) {
         if (err) {

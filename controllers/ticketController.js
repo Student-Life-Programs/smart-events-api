@@ -79,8 +79,8 @@ exports.update = function (req, res) {
       });
     } else {
       // update if attribute was sent
-      ticket.slot_id    = req.body.slot_id ? req.body.slot_id : ticket.slot_id;
-      ticket.student_id = req.body.student_id ? req.body.student_id : ticket.student_id;
+      ticket.slot_id    = req.body.slot_id !== undefined ? req.body.slot_id : ticket.slot_id;
+      ticket.student_id = req.body.student_id !== undefined ? req.body.student_id : ticket.student_id;
       // save and check
       ticket.save(function (err) {
         if (err) {

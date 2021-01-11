@@ -30,8 +30,8 @@ exports.index = function (req, res) {
 exports.add = function (req, res) {
   var engagee = new Engagee();
   engagee.engagement_id    = req.body.engagement_id;
-  engagee.message_received = req.body.message_received ? req.body.message_received : engagee.message_received;
-  engagee.phone            = req.body.phone ? req.body.phone : engagee.phone;
+  engagee.message_received = req.body.message_received !== undefined ? req.body.message_received : engagee.message_received;
+  engagee.phone            = req.body.phone !== undefined ? req.body.phone : engagee.phone;
   // save and check
   engagee.save(function (err) {
     if (err) {
@@ -80,9 +80,9 @@ exports.update = function (req, res) {
       });
     } else {
       // update if attribute was sent
-      engagee.engagement_id    = req.body.engagement_id ? req.body.engagement_id : engagee.engagement_id;
-      engagee.message_received = req.body.message_received ? req.body.message_received : engagee.message_received;
-      engagee.phone            = req.body.phone ? req.body.phone : engagee.phone;
+      engagee.engagement_id    = req.body.engagement_id !== undefined ? req.body.engagement_id : engagee.engagement_id;
+      engagee.message_received = req.body.message_received !== undefined ? req.body.message_received : engagee.message_received;
+      engagee.phone            = req.body.phone !== undefined ? req.body.phone : engagee.phone;
       // save and check
       engagee.save(function (err) {
         if (err) {

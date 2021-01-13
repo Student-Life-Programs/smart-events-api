@@ -33,7 +33,7 @@ exports.add = function (req, res) {
   slot.attraction_id   = req.body.attraction_id;
   slot.label           = req.body.label;
   slot.ticket_capacity = req.body.ticket_capacity;
-  slot.hide_time       = new Date(req.body.hide_time);
+  slot.hide_time       = new Date(req.body.hide_time + " GMT-0500");
   // save and check
   slot.save(function (err) {
     if (err) {
@@ -85,7 +85,7 @@ exports.update = function (req, res) {
       slot.attraction_id   = req.body.attraction_id !== undefined ? req.body.attraction_id : slot.attraction_id;
       slot.label           = req.body.label !== undefined ? req.body.label : slot.label;
       slot.ticket_capacity = req.body.ticket_capacity !== undefined ? req.body.ticket_capacity : slot.ticket_capacity;
-      slot.hide_time       = req.body.hide_time !== undefined ? new Date(req.body.hide_time) : slot.hide_time;
+      slot.hide_time       = req.body.hide_time !== undefined ? new Date(req.body.hide_time + " GMT-0500") : slot.hide_time;
       // save and check
       slot.save(function (err) {
         if (err) {

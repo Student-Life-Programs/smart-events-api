@@ -34,8 +34,8 @@ exports.add = function (req, res) {
   engagement.keyword    = req.body.keyword;
   engagement.message    = req.body.message;
   engagement.image_url  = req.body.image_url !== undefined ? req.body.image_url : engagement.image_url;
-  engagement.start_time = new Date(req.body.start_time);
-  engagement.end_time   = new Date(req.body.end_time);
+  engagement.start_time = new Date(req.body.start_time + " GMT-0500");
+  engagement.end_time   = new Date(req.body.end_time + " GMT-0500");
   // check for appropriate start/end times
   if (engagement.start_time >= engagement.end_time) {
     res.json({
@@ -96,8 +96,8 @@ exports.update = function (req, res) {
       engagement.keyword    = req.body.keyword !== undefined ? req.body.keyword : engagement.keyword;
       engagement.message    = req.body.message !== undefined ? req.body.message : engagement.message;
       engagement.image_url  = req.body.image_url !== undefined ? req.body.image_url : engagement.image_url;
-      engagement.start_time = req.body.start_time !== undefined ? new Date(req.body.start_time) : engagement.start_time;
-      engagement.end_time   = req.body.end_time !== undefined ? new Date(req.body.end_time) : engagement.end_time;
+      engagement.start_time = req.body.start_time !== undefined ? new Date(req.body.start_time + " GMT-0500") : engagement.start_time;
+      engagement.end_time   = req.body.end_time !== undefined ? new Date(req.body.end_time + " GMT-0500") : engagement.end_time;
       // check for appropriate start/end times
       if (engagement.start_time >= engagement.end_time) {
         res.json({

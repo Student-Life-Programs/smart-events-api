@@ -14,7 +14,7 @@ let router = require('express').Router();
 router.get('/', function(req, res) {
   res.json({
     status: 'success',
-    message: 'Welcome to the SLP SmartEvents API (v0.1).'
+    message: 'Welcome to the SLP SmartEvents API (v2.0.0)'
   });
 });
 
@@ -25,6 +25,7 @@ const engagementController = require('../controllers/engagementController');
 const engageeController = require('../controllers/engageeController');
 const slotController = require('../controllers/slotController');
 const ticketController = require('../controllers/ticketController');
+const twilioController = require('../controllers/twilioController');
 
 // EVENTS
 router.route('/events')
@@ -83,5 +84,9 @@ router.route('/tickets/:id')
   .get(ticketController.view)
   .put(ticketController.update)
   .delete(ticketController.delete);
+
+// TWILIO
+router.route('/twilio')
+  .get(twilioController.getAccountBalance);
 
 module.exports = router;

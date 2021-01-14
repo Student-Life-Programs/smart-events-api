@@ -101,22 +101,21 @@ exports.update = function (req, res) {
   });
 };
 
-// delete - delete a single engagee
+// delete - delete engagee
 exports.delete = function (req, res) {
-  // delete the engagee
-  Engagee.deleteOne({
-    _id: req.params.id
-  }, function (err, data) {
-    if (err) {
-      res.json({
-        status: "error",
-        message: err
-      });
-    } else {
-      res.json({
-        status: "success"
-      });
-    }
+  Engagee.findOne({_id: req.params.id}, function(err, engagee) {
+    engagee.deleteOne(function (err, data) {
+      if (err) {
+        res.json({
+          status: "error",
+          message: err
+        });
+      } else {
+        res.json({
+          status: "success"
+        });
+      }
+    });
   });
 };
 

@@ -41,4 +41,16 @@ const schema = mongoose.Schema({
   }
 });
 
+// this function fires before deleteOne is called
+// https://mongoosejs.com/docs/middleware.html
+schema.pre('deleteOne', {document:true, query:false}, function(next) {
+  this.model('Slot').find({attraction_id: this._id}, function(err, data) {
+    data.forEach(slot => {
+      slot.deleteOne(function (err, data) {
+        if (!err) { next() }
+      });
+    });
+  })
+});
+
 module.exports = mongoose.model('Attraction', schema);

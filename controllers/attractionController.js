@@ -125,20 +125,20 @@ exports.update = function (req, res) {
   });
 };
 
-// delete - delete a single attraction
+// delete - delete attraction
 exports.delete = function (req, res) {
-  Attraction.deleteOne({
-    _id: req.params.id
-  }, function (err, data) {
-    if (err) {
-      res.json({
-        status: "error",
-        message: err
-      });
-    } else {
-      res.json({
-        status: "success"
-      });
-    }
+  Attraction.findOne({_id: req.params.id}, function(err, attraction) {
+    attraction.deleteOne(function (err, data) {
+      if (err) {
+        res.json({
+          status: "error",
+          message: err
+        });
+      } else {
+        res.json({
+          status: "success"
+        });
+      }
+    });
   });
 };

@@ -8,9 +8,6 @@
 //
 
 const Event = require('../models/Event');
-const Attraction = require('../models/Attraction');
-const Engagee = require('../models/Engagee');
-const Engagement = require('../models/Engagement')
 
 // index - get all events
 exports.index = function (req, res) {
@@ -102,20 +99,20 @@ exports.update = function (req, res) {
   });
 };
 
-// delete - deletes a single event
+// delete - delete event
 exports.delete = function (req, res) {
-  Event.deleteOne({
-    _id: req.params.id
-  }, function (err, data) {
-    if (err) {
-      res.json({
-        status: "error",
-        message: err
-      });
-    } else {
-      res.json({
-        status: "success"
-      });
-    }
+  Event.findOne({_id: req.params.id}, function(err, event) {
+    event.deleteOne(function (err, data) {
+      if (err) {
+        res.json({
+          status: "error",
+          message: err
+        });
+      } else {
+        res.json({
+          status: "success"
+        });
+      }
+    });
   });
 };

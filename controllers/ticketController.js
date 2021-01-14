@@ -99,21 +99,21 @@ exports.update = function (req, res) {
   });
 };
 
-// delete - delete a single ticket
+// delete - delete ticket
 exports.delete = function (req, res) {
-  Ticket.deleteOne({
-    _id: req.params.id
-  }, function (err, data) {
-    if (err) {
-      res.json({
-        status: "error",
-        message: err
-      });
-    } else {
-      res.json({
-        status: "success"
-      });
-    }
+  Ticket.findOne({_id: req.params.id}, function(err, ticket) {
+    ticket.deleteOne(function (err, data) {
+      if (err) {
+        res.json({
+          status: "error",
+          message: err
+        });
+      } else {
+        res.json({
+          status: "success"
+        });
+      }
+    });
   });
 };
 

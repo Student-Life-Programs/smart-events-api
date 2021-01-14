@@ -8,7 +8,6 @@
 //
 
 const Engagement = require('../models/Engagement');
-const Engagee = require('../models/Engagee');
 
 // index - get all engagements
 exports.index = function (req, res) {
@@ -124,19 +123,20 @@ exports.update = function (req, res) {
   });
 };
 
-// delete - deletes a single engagement and all its engagees
+// delete - delete engagement
 exports.delete = function (req, res) {
-  // delete the engagement
-  Engagement.deleteOne({ _id: req.params.id})
-    .then((data) => Engagee.deleteMany({ engagement_id: req.params.id }))
-    .then((data) => {
-      res.json({
-        status: "success"
-      })})
-    .catch((err) => {
-      res.json({
-        status: "error",
-        message: err
-      });
-    })
+  Engagement.findOne({_id: req.params.id}, function(err, engagement) {
+    engagement.deleteOne(function (err, data) {
+      if (err) {
+        res.json({
+          status: "error",
+          message: err
+        });
+      } else {
+        res.json({
+          status: "success"
+        });
+      }
+    });
+  });
 };

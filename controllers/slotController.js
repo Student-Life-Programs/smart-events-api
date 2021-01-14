@@ -8,7 +8,6 @@
 //
 
 const Slot = require('../models/Slot');
-const Ticket = require('../models/Ticket');
 
 // index - get all slots
 exports.index = function (req, res) {
@@ -104,20 +103,20 @@ exports.update = function (req, res) {
   });
 };
 
-// delete - delete a single slot
+// delete - delete slot
 exports.delete = function (req, res) {
-  Slot.deleteOne({
-    _id: req.params.id
-  }, function (err, data) {
-    if (err) {
-      res.json({
-        status: "error",
-        message: err
-      });
-    } else {
-      res.json({
-        status: "success"
-      });
-    }
+  Slot.findOne({_id: req.params.id}, function(err, slot) {
+    slot.deleteOne(function (err, data) {
+      if (err) {
+        res.json({
+          status: "error",
+          message: err
+        });
+      } else {
+        res.json({
+          status: "success"
+        });
+      }
+    });
   });
 };

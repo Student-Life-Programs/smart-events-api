@@ -23,22 +23,18 @@ const schema = mongoose.Schema({
 // these functions fires before deleteOne is called
 // https://mongoosejs.com/docs/middleware.html
 schema.pre('deleteOne', {document:true, query:false}, function(next) {
-  this.model('Attraction').find({event_id: this._id}, function(err, data) {
-    data.forEach(attraction => {
-      attraction.deleteOne(function (err, data) {
-        if (!err) { next() }
+  Promise.all([
+    this.model('Attraction').find({event_id: this._id}, function(err, data) {
+      data.forEach(attraction => {
+        attraction.deleteOne();
       });
-    });
-  })
-});
-schema.pre('deleteOne', {document:true, query:false}, function(next) {
-  this.model('Engagement').find({event_id: this._id}, function(err, data) {
-    data.forEach(engagement => {
-      engagement.deleteOne(function (err, data) {
-        if (!err) { next() }
+    }),
+    this.model('Engagement').find({event_id: this._id}, function(err, data) {
+      data.forEach(engagement => {
+        engagement.deleteOne();
       });
-    });
-  })
+    })
+  ]).then(next)
 });
 
 module.exports = mongoose.model('Event', schema);

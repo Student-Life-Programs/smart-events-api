@@ -124,19 +124,18 @@ exports.update = function (req, res) {
 };
 
 // delete - delete engagement
-exports.delete = function (req, res) {
-  Engagement.findOne({_id: req.params.id}, function(err, engagement) {
-    engagement.deleteOne(function (err, data) {
-      if (err) {
-        res.json({
-          status: "error",
-          message: err
-        });
-      } else {
-        res.json({
-          status: "success"
-        });
-      }
-    });
+exports.delete = async function (req, res) {
+  const engagement = await Engagement.findOne({_id: req.params.id});
+  engagement.deleteOne(function (err, data) {
+    if (err) {
+      res.json({
+        status: "error",
+        message: err
+      });
+    } else {
+      res.json({
+        status: "success"
+      });
+    }
   });
 };

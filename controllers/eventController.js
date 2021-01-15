@@ -100,19 +100,18 @@ exports.update = function (req, res) {
 };
 
 // delete - delete event
-exports.delete = function (req, res) {
-  Event.findOne({_id: req.params.id}, function(err, event) {
-    event.deleteOne(function (err, data) {
-      if (err) {
-        res.json({
-          status: "error",
-          message: err
-        });
-      } else {
-        res.json({
-          status: "success"
-        });
-      }
-    });
+exports.delete = async function (req, res) {
+  const event = await Event.findOne({_id: req.params.id});
+  event.deleteOne(function (err, data) {
+    if (err) {
+      res.json({
+        status: "error",
+        message: err
+      });
+    } else {
+      res.json({
+        status: "success"
+      });
+    }
   });
 };

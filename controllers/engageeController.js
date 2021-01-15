@@ -102,20 +102,19 @@ exports.update = function (req, res) {
 };
 
 // delete - delete engagee
-exports.delete = function (req, res) {
-  Engagee.findOne({_id: req.params.id}, function(err, engagee) {
-    engagee.deleteOne(function (err, data) {
-      if (err) {
-        res.json({
-          status: "error",
-          message: err
-        });
-      } else {
-        res.json({
-          status: "success"
-        });
-      }
-    });
+exports.delete = async function (req, res) {
+  const engagee = await Engagee.findOne({_id: req.params.id});
+  engagee.deleteOne(function (err, data) {
+    if (err) {
+      res.json({
+        status: "error",
+        message: err
+      });
+    } else {
+      res.json({
+        status: "success"
+      });
+    }
   });
 };
 

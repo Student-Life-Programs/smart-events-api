@@ -104,19 +104,18 @@ exports.update = function (req, res) {
 };
 
 // delete - delete slot
-exports.delete = function (req, res) {
-  Slot.findOne({_id: req.params.id}, function(err, slot) {
-    slot.deleteOne(function (err, data) {
-      if (err) {
-        res.json({
-          status: "error",
-          message: err
-        });
-      } else {
-        res.json({
-          status: "success"
-        });
-      }
-    });
+exports.delete = async function (req, res) {
+  const slot = await Slot.findOne({_id: req.params.id});
+  slot.deleteOne(function (err, data) {
+    if (err) {
+      res.json({
+        status: "error",
+        message: err
+      });
+    } else {
+      res.json({
+        status: "success"
+      });
+    }
   });
 };

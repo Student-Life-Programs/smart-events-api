@@ -100,20 +100,19 @@ exports.update = function (req, res) {
 };
 
 // delete - delete ticket
-exports.delete = function (req, res) {
-  Ticket.findOne({_id: req.params.id}, function(err, ticket) {
-    ticket.deleteOne(function (err, data) {
-      if (err) {
-        res.json({
-          status: "error",
-          message: err
-        });
-      } else {
-        res.json({
-          status: "success"
-        });
-      }
-    });
+exports.delete = async function (req, res) {
+  const ticket = await Ticket.findOne({_id: req.params.id});
+  ticket.deleteOne(function (err, data) {
+    if (err) {
+      res.json({
+        status: "error",
+        message: err
+      });
+    } else {
+      res.json({
+        status: "success"
+      });
+    }
   });
 };
 

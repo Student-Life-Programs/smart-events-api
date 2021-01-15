@@ -31,14 +31,9 @@ const schema = mongoose.Schema({
 
 // these functions fires before deleteOne is called
 // https://mongoosejs.com/docs/middleware.html
-schema.pre('deleteOne', {document:true, query:false}, function(next) {
-  this.model('Ticket').find({slot_id: this._id}, function(err, data) {
-    data.forEach(ticket => {
-      ticket.deleteOne(function (err, data) {
-        if (!err) { next() }
-      });
-    });
-  })
+schema.pre('deleteOne', {document:true, query:false}, async function(next) {
+  await this.model('Ticket').deleteMany({slot_id: this._id});
+  next();
 });
 
 module.exports = mongoose.model('Slot', schema);

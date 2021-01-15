@@ -126,19 +126,18 @@ exports.update = function (req, res) {
 };
 
 // delete - delete attraction
-exports.delete = function (req, res) {
-  Attraction.findOne({_id: req.params.id}, function(err, attraction) {
-    attraction.deleteOne(function (err, data) {
-      if (err) {
-        res.json({
-          status: "error",
-          message: err
-        });
-      } else {
-        res.json({
-          status: "success"
-        });
-      }
-    });
+exports.delete = async function (req, res) {
+  const attraction = await Attraction.findOne({_id: req.params.id});
+  attraction.deleteOne(function (err, data) {
+    if (err) {
+      res.json({
+        status: "error",
+        message: err
+      });
+    } else {
+      res.json({
+        status: "success"
+      });
+    }
   });
 };

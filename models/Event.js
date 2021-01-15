@@ -22,19 +22,10 @@ const schema = mongoose.Schema({
 
 // these functions fires before deleteOne is called
 // https://mongoosejs.com/docs/middleware.html
-schema.pre('deleteOne', {document:true, query:false}, function(next) {
-  Promise.all([
-    this.model('Attraction').find({event_id: this._id}, function(err, data) {
-      data.forEach(attraction => {
-        attraction.deleteOne();
-      });
-    }),
-    this.model('Engagement').find({event_id: this._id}, function(err, data) {
-      data.forEach(engagement => {
-        engagement.deleteOne();
-      });
-    })
-  ]).then(next)
+schema.pre('deleteOne', {document:true, query:false}, async function(next) {
+  await this.model('Attraction').deleteMany({event_id: this._id});
+  await this.model('Engagement').deleteMany({event_id: this._id});
+  next();
 });
 
 module.exports = mongoose.model('Event', schema);

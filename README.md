@@ -8,7 +8,7 @@
 # SmartEvents API
 The SmartEvents API is a RESTful API servicing resources to all projects inside the SmartEvents suite. Node Express server hosted in an AWS EC2 instance with a local MongoDB.
 
-See the documentation directory to get started with using the API.
+See the [docs](https://github.com/CreativeSolutionsGroup/smart-events-api/tree/master/docs) directory to get started with using the API.
 
 ## Contributing
 All projects maintained by the Creative Solutions Group are considered open source software, that is anyone is welcome and encouraged to contribute to its development.

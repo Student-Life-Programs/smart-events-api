@@ -3,3 +3,4 @@ package-lock.json
 /secrets
 .env
 ecosystem.config.js
+.DS_Store

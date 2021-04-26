@@ -9,7 +9,12 @@ See the db [schema](https://github.com/CreativeSolutionsGroup/smart-events-api/m
 | `GET` `PUT` `DELETE` | `/api/events/{id}` |
 
 ### Parameters 
-Required: `name` `description`
+```
+{
+  name: "Event 1",
+  description: "A great event."
+}
+```
 
 ## ENGAGEMENTS
 | | |
@@ -19,9 +24,16 @@ Required: `name` `description`
 | `GET` | `/api/engagements/{id}/engagees` |
 
 ### Parameters 
-Required: `event_id` `keyword` `message` `start_time` `end_time`
-
-Optional: `image_url`
+```
+{
+  event_id: "603e985f0e2116517acba07d",
+  keyword: "^\d{7}$", // regex
+  message: "Welcome to Event 1!",
+  start_time: "01/1/2021 10:00 AM",
+  end_time: "01/1/2021 11:00 AM",
+  image_url: "https://i.redd.it/w3kr4m2fi3111.png" //optional
+}
+```
 
 ## ENGAGEES
 | | |
@@ -30,9 +42,13 @@ Optional: `image_url`
 | `GET` `PUT` `DELETE` | `/api/engagees/{id}` |
 
 ### Parameters 
-Required: `engagement_id`
-
-Optional: `message_received` `phone`
+```
+{
+  engagement_id: "603e985f0e2116517acba07d",
+  message_received: "MORE", // optional
+  phone: "+12345678901"     // optional
+}
+```
 
 ## ATTRACTIONS
 | | |
@@ -41,7 +57,17 @@ Optional: `message_received` `phone`
 | `GET` `PUT` `DELETE` | `/api/attractions/{id}` |
 
 ### Parameters 
-Required: `event_id` `name` `description` `about` `image_url` `start_time` `end_time`
+```
+{
+  event_id: "603e985f0e2116517acba07d",
+  name: "Attraction 1",
+  description: "More info about the attraction.",
+  about: "What one 'ticket' means (one entry, group of 5 entry, etc.)",
+  image_url: "https://i.redd.it/w3kr4m2fi3111.png",
+  start_time: "01/1/2021 10:00 AM",
+  end_time: "01/1/2021 11:00 AM"
+}
+```
 
 ## SLOTS
 | | |
@@ -51,7 +77,14 @@ Required: `event_id` `name` `description` `about` `image_url` `start_time` `end_
 | `GET` | `/api/slots/{id}/tickets` |
 
 ### Parameters 
-Required: `attraction_id` `label` `ticket_capacity` `hide_time`
+```
+{
+  attraction_id: "603e985f0e2116517acba07d",
+  label: "11pm Movie Showing",
+  ticket_capacity: 100,
+  hide_time: "01/1/2021 11:00 AM"
+}
+```
 
 ## TICKETS
 | Request Types | Routes |
@@ -60,4 +93,9 @@ Required: `attraction_id` `label` `ticket_capacity` `hide_time`
 | `GET` `PUT` `DELETE` | `/api/tickets/{id}` |
 
 ### Parameters 
-Required: `slot_id` `student_id`
+```
+{
+  slot_id: "603e985f0e2116517acba07d",
+  student_id: "1234567"
+}
+```

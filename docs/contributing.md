@@ -30,7 +30,7 @@ Running `git remote -v` should show the **origin** and **upstream** branches wit
 
 7. Submit PR in GitHub
 
-NOTE: You will want to periodically check for changes from the upstream branch. If changes have been made, you will want to update your remote and local master and rebase commits.
+**NOTE:** You will want to periodically check for changes from the upstream branch. If changes have been made, you will want to update your remote and local master and rebase commits.
 
 `git remote update`
 `git push origin upstream`
